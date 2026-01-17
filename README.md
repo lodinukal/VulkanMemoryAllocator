@@ -1,3 +1,15 @@
+# Odin bindings
+## Linux/macOS
+```sh
+curl -L https://github.com/lodinukal/VulkanMemoryAllocator/releases/download/v3.3.0/vulkan_memory_allocator.tar.gz -o vma.tar.gz
+tar -xzf vma.tar.gz
+```
+## Windows (Powershell)
+```powershell
+Invoke-WebRequest -Uri "https://github.com/lodinukal/VulkanMemoryAllocator/releases/download/v3.3.0/vulkan_memory_allocator.tar.gz" -OutFile "vma.tar.gz"
+mkdir vma | tar -xzf ./vma.tar.gz -C vma
+```
+
 # Vulkan Memory Allocator
 
 Easy to integrate Vulkan memory allocation library.
