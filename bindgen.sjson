@@ -106,5 +106,5 @@ remove = [
 ]
 
 clang_include_paths = [
-    "C:/VulkanSDK/1.4.304.1/Include/"
+    "bindings/include/"
 ]

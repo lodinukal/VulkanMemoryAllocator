@@ -27,6 +27,13 @@ pub fn build(b: *std.Build) !void {
     const optimize: std.builtin.OptimizeMode = .ReleaseSafe;
 
     const vulkan_headers = b.dependency("vulkan_headers", .{});
+
+    b.installDirectory(.{
+        .install_dir = .header,
+        .install_subdir = "",
+        .source_dir = vulkan_headers.path("include"),
+    });
+
     for (whitelisted) |t| {
         const mod = b.createModule(.{
             .target = t.target,
