@@ -1,0 +1,110 @@
+// See README.md in root of repository for documentation and more configuration options.
+
+inputs = [
+	"include"
+]
+
+output_folder = "bindings"
+imports_file = "imports.inc"
+package_name = "VulkanMemoryAllocator"
+remove_type_prefix = "Vma"
+remove_function_prefix = "vma"
+
+// "Old_Name" = "New_Name"
+rename = {
+    "VkFlags" = "vk.Flags",
+    "VmaAllocatorCreateFlagBits" = "AllocatorCreateFlags",
+    "VmaAllocationCreateFlagBits" = "AllocationCreateFlags",
+    "VmaPoolCreateFlagBits" = "PoolCreateFlags",
+    "VmaDefragmentationFlagBits" = "DefragmentationFlags",
+    "VmaVirtualBlockCreateFlagBits" = "VirtualBlockCreateFlags",
+    "VmaVirtualAllocationCreateFlagBits" = "VirtualAllocationCreateFlags",
+    "VkDeviceMemory" = "vk.DeviceMemory",
+    "VkDeviceSize" = "vk.DeviceSize",
+    "VkPhysicalDevice" = "vk.PhysicalDevice",
+    "VkDevice" = "vk.Device",
+    "VkInstance" = "vk.Instance",
+    "VkAllocationCallbacks" = "vk.AllocationCallbacks",
+    "VkMemoryPropertyFlags" = "vk.MemoryPropertyFlags",
+    "VkBool32" = "b32",
+    "VkResult" = "vk.Result",
+    "VkPhysicalDeviceProperties" = "vk.PhysicalDeviceProperties",
+    "VkBufferCreateInfo" = "vk.BufferCreateInfo",
+    "VkPhysicalDeviceMemoryProperties" = "vk.PhysicalDeviceMemoryProperties",
+    "VkImageCreateInfo" = "vk.ImageCreateInfo",
+    "VkMemoryRequirements" = "vk.MemoryRequirements",
+    "VkImage" = "vk.Image",
+    "VkBuffer" = "vk.Buffer",
+    "VkExternalMemoryHandleTypeFlagsKHR" = "vk.ExternalMemoryHandleTypeFlagsKHR",
+    "PFN_vmaAllocateDeviceMemoryFunction" = "ProcAllocateDeviceMemoryFunction",
+    "PFN_vmaFreeDeviceMemoryFunction" = "ProcFreeDeviceMemoryFunction",
+    "PFN_vmaAllocateDeviceMemoryFunction" = "ProcAllocateDeviceMemoryFunction",
+    "PFN_vmaFreeDeviceMemoryFunction" = "ProcFreeDeviceMemoryFunction",
+    "PFN_vkGetInstanceProcAddr" = "vk.ProcGetInstanceProcAddr",
+    "PFN_vkGetDeviceProcAddr" = "vk.ProcGetDeviceProcAddr",
+    "PFN_vkGetPhysicalDeviceProperties" = "vk.ProcGetPhysicalDeviceProperties",
+    "PFN_vkGetPhysicalDeviceMemoryProperties" = "vk.ProcGetPhysicalDeviceMemoryProperties",
+    "PFN_vkAllocateMemory" = "vk.ProcAllocateMemory",
+    "PFN_vkFreeMemory" = "vk.ProcFreeMemory",
+    "PFN_vkMapMemory" = "vk.ProcMapMemory",
+    "PFN_vkUnmapMemory" = "vk.ProcUnmapMemory",
+    "PFN_vkFlushMappedMemoryRanges" = "vk.ProcFlushMappedMemoryRanges",
+    "PFN_vkInvalidateMappedMemoryRanges" = "vk.ProcInvalidateMappedMemoryRanges",
+    "PFN_vkBindBufferMemory" = "vk.ProcBindBufferMemory",
+    "PFN_vkBindImageMemory" = "vk.ProcBindImageMemory",
+    "PFN_vkGetBufferMemoryRequirements" = "vk.ProcGetBufferMemoryRequirements",
+    "PFN_vkGetImageMemoryRequirements" = "vk.ProcGetImageMemoryRequirements",
+    "PFN_vkCreateBuffer" = "vk.ProcCreateBuffer",
+    "PFN_vkDestroyBuffer" = "vk.ProcDestroyBuffer",
+    "PFN_vkCreateImage" = "vk.ProcCreateImage",
+    "PFN_vkDestroyImage" = "vk.ProcDestroyImage",
+    "PFN_vkCmdCopyBuffer" = "vk.ProcCmdCopyBuffer",
+    "PFN_vkGetBufferMemoryRequirements2KHR" = "vk.ProcGetBufferMemoryRequirements2KHR",
+    "PFN_vkGetImageMemoryRequirements2KHR" = "vk.ProcGetImageMemoryRequirements2KHR",
+    "PFN_vkBindBufferMemory2KHR" = "vk.ProcBindBufferMemory2KHR",
+    "PFN_vkBindImageMemory2KHR" = "vk.ProcBindImageMemory2KHR",
+    "PFN_vkGetPhysicalDeviceMemoryProperties2KHR" = "vk.ProcGetPhysicalDeviceMemoryProperties2KHR",
+    "PFN_vkGetDeviceBufferMemoryRequirementsKHR" = "vk.ProcGetDeviceBufferMemoryRequirementsKHR",
+    "PFN_vkGetDeviceImageMemoryRequirementsKHR" = "vk.ProcGetDeviceImageMemoryRequirementsKHR",
+    "PFN_vmaCheckDefragmentationBreakFunction" = "ProcCheckDefragmentationBreakFunction",
+    "PFN_vmaCheckDefragmentationBreakFunction" = "ProcCheckDefragmentationBreakFunction",
+}
+
+// "Enum_To_Turn_Into_Bitset" = "New_Enum_Type_Name"
+bit_setify = {
+    "VmaAllocatorCreateFlagBits" = "AllocatorCreateFlagBits",
+    "VmaAllocationCreateFlagBits" = "AllocationCreateFlagBits",
+    "VmaPoolCreateFlagBits" = "PoolCreateFlagBits",
+    "VmaDefragmentationFlagBits" = "DefragmentationFlagBits",
+    "VmaVirtualBlockCreateFlagBits" = "VirtualBlockCreateFlagBits",
+    "VmaVirtualAllocationCreateFlagBits" = "VirtualAllocationCreateFlagBits",
+}
+
+type_overrides = {
+}
+
+struct_field_overrides = {
+}
+
+struct_field_tags = {
+}
+
+procedure_type_overrides = {
+    "vmaGetPhysicalDeviceProperties.ppPhysicalDeviceProperties": "[^]",
+    "vmaGetMemoryProperties.ppPhysicalDeviceMemoryProperties": "[^]",
+}
+
+procedures_at_end = true
+
+remove = [
+    "VmaAllocatorCreateFlags",
+    "VmaAllocationCreateFlags",
+    "VmaPoolCreateFlags",
+    "VmaDefragmentationFlags",
+    "VmaVirtualBlockCreateFlags",
+    "VmaVirtualAllocationCreateFlags",
+]
+
+clang_include_paths = [
+    "C:/VulkanSDK/1.4.304.1/Include/"
+]

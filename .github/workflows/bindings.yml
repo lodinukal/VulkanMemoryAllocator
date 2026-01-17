@@ -1,0 +1,44 @@
+name: Build and Release VMA Odin Bindings
+
+on:
+    push:
+    pull_request:
+        types: [opened, synchronize, reopened]
+
+jobs:
+    artifact:
+        runs-on: windows-latest
+
+        steps:
+            - uses: extractions/setup-just@v3
+              with:
+                  github-token: ${{ secrets.MY_GITHUB_TOKEN }}
+            - uses: actions/checkout@v4
+
+            - name: Setup Zig
+              uses: mlugg/setup-zig@v2
+              with:
+                  version: 0.16.0-dev.2145+ec25b1384
+
+            - name: Build
+              run: just build
+
+            - name: Pack Artifact
+              run: cd bindings && tar czf ../vulkan_memory_allocator.tar.gz . && cd ..
+
+            - name: Upload Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: vulkan_memory_allocator_bindings
+                  path: vulkan_memory_allocator.tar.gz
+            - name: Create Release
+              uses: softprops/action-gh-release@v2
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  # draft: true
+                  files: |
+                      vulkan_memory_allocator.tar.gz
+                  name: VMA Odin Bindings v3.3.0
+                  tag_name: v3.3.0
+                  fail_on_unmatched_files: true
